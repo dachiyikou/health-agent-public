@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="grid gap-8 lg:grid-cols-[420px_minmax(0,1fr)]">
+  <section class="rounded-[28px] bg-white p-8 shadow-sm">
+    <p class="text-xs uppercase tracking-[0.24em] text-[#3c6842]/70">手动录入</p>
+    <form method="post" action="/api/records" class="mt-6 space-y-4" data-api-form="records">
+      <input type="hidden" name="user_id" value="{{ user_id }}">
+      <div>
+        <label class="mb-2 block text-sm font-semibold">记录类型</label>
+        <select name="record_type" class="w-full rounded-2xl border-0 bg-[#f4f4ef] px-4 py-3" data-unit-select>
+          <option value="temperature" data-unit="C" data-placeholder="例如 36.7">体温</option>
+          <option value="blood_pressure" data-unit="mmHg" data-placeholder="例如 80/120（舒张压/收缩压）">血压</option>
+          <option value="blood_glucose" data-unit="mmol/L" data-placeholder="例如 5.6">血糖</option>
+          <option value="heart_rate" data-unit="bpm" data-placeholder="例如 78">心率</option>
+          <option value="weight" data-unit="kg" data-placeholder="例如 54.2">体重</option>
+          <option value="spo2" data-unit="%" data-placeholder="例如 98">血氧</option>
+        </select>
+      </div>
+      <div>
+        <label class="mb-2 block text-sm font-semibold">数值</label>
+        <input name="value" class="w-full rounded-2xl border-0 bg-[#f4f4ef] px-4 py-3" data-record-value-input placeholder="例如 36.7">
+      </div>
+      <div>
+        <label class="mb-2 block text-sm font-semibold">单位</label>
+        <div class="rounded-2xl bg-[#f4f4ef] px-4 py-3 font-semibold text-[#3c6842]" data-unit-display>C</div>
+      </div>
+      <div>
+        <label class="mb-2 block text-sm font-semibold">记录时间</label>
+        <input name="recorded_at" class="w-full rounded-2xl border-0 bg-[#f4f4ef] px-4 py-3" placeholder="2026-03-29T09:00:00">
+      </div>
+      <div>
+        <label class="mb-2 block text-sm font-semibold">备注</label>
+        <textarea name="note" rows="3" class="w-full rounded-2xl border-0 bg-[#f4f4ef] px-4 py-3"></textarea>
+      </div>
+      <button class="rounded-full bg-[#3c6842] px-6 py-3 font-semibold text-[#e4ffe2]">保存记录</button>
+    </form>
+  </section>
+  <section class="rounded-[28px] bg-white p-8 shadow-sm">
+    <div class="flex items-center justify-between">
+      <p class="text-xs uppercase tracking-[0.24em] text-[#3c6842]/70">最近7天记录</p>
+      <button
+        type="button"
+        class="rounded-full bg-[#efe3df] px-4 py-2 text-xs font-semibold text-[#9f403d]"
+        data-clear-records
+        data-user-id="{{ user_id }}"
+      >
+        清除全部
+      </button>
+    </div>
+    <p class="mt-3 text-xs text-[#5c605a]">向下滚动查看最近7天记录</p>
+    <div class="mt-4 max-h-[460px] overflow-y-auto pr-1" data-record-scroll>
+      <div class="space-y-4" data-record-list>
+      {% for record in records %}
+      <div class="rounded-2xl bg-[#f4f4ef] px-4 py-4" data-record-card>
+        <div>
+          <p class="font-semibold">{{ record.metric_label or record.metric_type }}</p>
+          <p class="text-sm text-[#5c605a]">{{ record.recorded_at or '-' }}</p>
+        </div>
+        <div class="mt-3 flex items-center justify-between">
+          <p class="font-bold">{{ record.metric_value }} {{ record.unit }}</p>
+          <button
+            type="button"
+            class="rounded-full bg-white px-3 py-1 text-xs font-semibold text-[#9f403d]"
+            data-delete-record
+            data-user-id="{{ user_id }}"
+            data-record-id="{{ record.id }}"
+          >
+            删除
+          </button>
+        </div>
+      </div>
+      {% else %}
+      <p class="text-sm text-[#5c605a]" data-record-empty-state>最近7天暂无记录，先录入一条吧。</p>
+      {% endfor %}
+      {% if records %}
+      <p class="hidden text-sm text-[#5c605a]" data-record-empty-state>最近7天暂无记录，先录入一条吧。</p>
+      {% endif %}
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

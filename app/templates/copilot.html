@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
+  <section class="rounded-[28px] bg-white p-8 shadow-sm">
+    <div class="space-y-6" data-chat-feed data-user-id="{{ user_id }}" data-session-id="{{ session_id }}">
+      {% for message in messages %}
+      <div class="{% if message.role == 'assistant' %}max-w-[85%]{% else %}ml-auto max-w-[85%]{% endif %}" data-chat-message data-role="{{ message.role }}">
+        <div class="{% if message.role == 'assistant' %}bg-[#f4f4ef] text-[#2f342e]{% else %}bg-[#3c6842] text-[#e4ffe2]{% endif %} rounded-[24px] px-6 py-5 shadow-[0_10px_30px_rgba(31,48,36,0.06)]">
+          <p class="whitespace-pre-wrap leading-7">{{ message.content }}</p>
+        </div>
+      </div>
+      {% else %}
+      <div class="rounded-[24px] bg-[#f4f4ef] p-6" data-chat-empty-state>
+        <p class="leading-7">你好，我是你的健康 Copilot。你可以直接描述症状、记录健康指标，或让我帮你创建提醒。</p>
+      </div>
+      {% endfor %}
+    </div>
+    <form
+      method="post"
+      action="/api/copilot/message"
+      class="mt-8 space-y-3"
+      data-copilot-form
+      data-stream-endpoint="/api/copilot/message/stream"
+    >
+      <input type="hidden" name="user_id" value="{{ user_id }}">
+      <input type="hidden" name="session_id" value="{{ session_id }}">
+      <textarea name="message" rows="4" class="w-full rounded-3xl border-0 bg-[#f4f4ef] px-5 py-4" placeholder="请输入症状、药物问题、健康记录或提醒需求"></textarea>
+      <button class="rounded-full bg-[#3c6842] px-6 py-3 font-semibold text-[#e4ffe2]">发送消息</button>
+    </form>
+    <template data-chat-stream-template>
+      <details data-process-details>
+        <summary data-process-summary></summary>
+        <div data-process-log></div>
+      </details>
+    </template>
+  </section>
+  <aside class="space-y-6">
+    <div class="rounded-[28px] bg-white p-6 shadow-sm">
+      <div class="flex flex-wrap gap-3">
+        <a href="/copilot?user_id={{ user_id }}&session_id={{ new_session_id }}&new_session=1" class="inline-flex rounded-full bg-[#3c6842] px-5 py-3 text-sm font-semibold text-[#e4ffe2]">新建会话</a>
+        <button type="button" class="inline-flex rounded-full bg-[#efe3df] px-5 py-3 text-sm font-semibold text-[#9f403d]" data-clear-sessions data-user-id="{{ user_id }}">清空全部</button>
+      </div>
+      <div class="mt-5 border-t border-[#e6e9e2] pt-5">
+      <p class="text-xs uppercase tracking-[0.24em] text-[#3c6842]/70">当前会话</p>
+      <p class="mt-3 text-sm text-[#5c605a]">{{ session_id }}</p>
+      </div>
+    </div>
+    <div class="rounded-[28px] bg-white p-6 shadow-sm">
+      <p class="text-xs uppercase tracking-[0.24em] text-[#3c6842]/70">历史会话</p>
+      <div class="mt-4 space-y-3" data-session-list>
+        {% for session in sessions %}
+        <div class="rounded-2xl {% if session.id == session_id %}bg-[#eef8ef]{% else %}bg-[#f4f4ef]{% endif %} px-4 py-3" data-session-card data-session-id="{{ session.id }}">
+          <div class="flex items-start justify-between gap-3">
+            <a href="/copilot?user_id={{ user_id }}&session_id={{ session.id }}" class="block flex-1 min-w-0" data-session-link>
+              <p class="font-semibold text-[#2f342e]" data-session-title>{{ session.display_title }}</p>
+              <p class="mt-1 text-xs text-[#5c605a]" data-session-time>{{ session.started_at }}</p>
+              {% if session.preview %}
+              <p class="mt-1 text-xs text-[#5c605a]" data-session-preview>{{ session.preview }}</p>
+              {% endif %}
+            </a>
+            <button
+              type="button"
+              class="shrink-0 rounded-full bg-white px-3 py-1 text-xs font-semibold text-[#9f403d]"
+              data-delete-session
+              data-user-id="{{ user_id }}"
+              data-session-id="{{ session.id }}"
+            >
+              删除
+            </button>
+          </div>
+        </div>
+        {% else %}
+        <p class="text-sm text-[#5c605a]">还没有历史会话。</p>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="rounded-[28px] bg-white p-6 shadow-sm">
+      <p class="text-xs uppercase tracking-[0.24em] text-[#3c6842]/70">建议入口</p>
+      <div class="mt-4 space-y-3 text-sm">
+        <p>体温 37.8</p>
+        <p>每天晚上 8 点提醒我吃药</p>
+        <p>我今天头痛和发烧</p>
+      </div>
+    </div>
+  </aside>
+</div>
+{% endblock %}

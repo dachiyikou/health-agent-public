@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="mx-auto max-w-3xl rounded-[28px] bg-white p-10 shadow-sm">
+  <p class="text-xs uppercase tracking-[0.24em] text-[#9f403d]/70">Startup Error</p>
+  <h3 class="mt-4 text-3xl font-extrabold tracking-tight text-[#2f342e]">系统初始化失败</h3>
+  <p class="mt-4 leading-7 text-[#5c605a]">
+    当前 Web 已经启动，但核心服务没有完成初始化，所以功能页暂时不可用。请先根据下面的错误信息修复环境，然后刷新页面。
+  </p>
+  <div class="mt-8 rounded-3xl bg-[#fff1ef] px-5 py-4 text-sm font-medium text-[#9f403d]">
+    {{ error_detail }}
+  </div>
+  <div class="mt-8 rounded-3xl bg-[#f4f4ef] px-5 py-4 text-sm text-[#5c605a]">
+    <p>建议先访问 <code>/healthz</code> 检查系统状态。</p>
+    <p class="mt-2">如果是 Qdrant 维度不匹配，请先运行重建脚本后再启动 Web。</p>
+  </div>
+</div>
+{% endblock %}
