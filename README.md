@@ -6,7 +6,7 @@
 
 - `app/`: FastAPI Web 应用、页面路由、API 路由、模板和静态资源
 - `health_agent/`: 核心运行时、agents、services、repositories、schemas、memory、tools
-- `scripts/`: 手动运维/验证脚本，例如 Qdrant collection 重建和 Qwen 连通性测试
+- `scripts/`: 手动运维/验证脚本
 
 
 ## Prerequisites
