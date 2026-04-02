@@ -4,18 +4,18 @@ import json
 from pathlib import Path
 from typing import Any
 
-from config import (
+from health_agent.config import (
     MEMORY_IMPORTANCE_THRESHOLD,
     MEMORY_PROFILE_PATH,
     MEMORY_SUMMARY_PATH,
     SESSION_MEMORY_WINDOW,
     VECTOR_COLLECTION_MEMORY,
 )
-from memory.profile_store import ProfileStore
-from memory.summarizer import SessionSummarizer
-from schemas.memory_schema import SessionSummaryPayload, UserMemoryPayload, UserProfilePayload
-from tools.db import DBClient
-from tools.vector_store import VectorStoreClient
+from health_agent.memory.profile_store import ProfileStore
+from health_agent.memory.summarizer import SessionSummarizer
+from health_agent.schemas.memory_schema import SessionSummaryPayload, UserMemoryPayload, UserProfilePayload
+from health_agent.tools.db import DBClient
+from health_agent.tools.vector_store import VectorStoreClient
 
 
 class MemoryManager:

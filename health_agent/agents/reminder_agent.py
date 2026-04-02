@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-from config import DEFAULT_TIMEZONE
-from jobs.scheduler import ReminderScheduler
-from schemas.agent_schema import AgentResponse
-from schemas.record_schema import ReminderPayload
-from tools.db import DBClient
+from health_agent.config import DEFAULT_TIMEZONE
+from health_agent.jobs.scheduler import ReminderScheduler
+from health_agent.schemas.agent_schema import AgentResponse
+from health_agent.schemas.record_schema import ReminderPayload
+from health_agent.tools.db import DBClient
 
 
 class ReminderAgent:

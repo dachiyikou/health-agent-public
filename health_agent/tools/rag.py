@@ -7,7 +7,7 @@ from typing import Any
 
 import pandas as pd
 
-from config import (
+from health_agent.config import (
     KNOWLEDGE_DIR,
     RAG_CHUNK_OVERLAP,
     RAG_CHUNK_SIZE,
@@ -18,7 +18,7 @@ from config import (
     VECTOR_COLLECTION_METRIC,
     VECTOR_COLLECTION_SYMPTOM,
 )
-from tools.vector_store import VectorStoreClient
+from health_agent.tools.vector_store import VectorStoreClient
 
 try:
     from pypdf import PdfReader

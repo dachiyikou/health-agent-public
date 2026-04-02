@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from sqlalchemy import select
 
-from schemas.record_schema import ReminderPayload
-from tools.db import DBClient, Reminder, utcnow
+from health_agent.schemas.record_schema import ReminderPayload
+from health_agent.tools.db import DBClient, Reminder, utcnow
 
 
 class ReminderRepository:

@@ -6,7 +6,7 @@ from typing import Any
 
 import requests
 
-from config import LANGFUSE_HOST, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY, LOG_FILE_PATH
+from health_agent.config import LANGFUSE_HOST, LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY, LOG_FILE_PATH
 
 
 def build_logger(name: str = "health_agent") -> logging.Logger:

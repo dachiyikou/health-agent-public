@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from schemas.memory_schema import UserProfilePayload
-from tools.db import DBClient
+from health_agent.schemas.memory_schema import UserProfilePayload
+from health_agent.tools.db import DBClient
 
 
 class ProfileRepository:

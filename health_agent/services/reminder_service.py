@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from schemas.record_schema import ReminderCreatePayload, ReminderPayload
+from health_agent.schemas.record_schema import ReminderCreatePayload, ReminderPayload
 from health_agent.repositories.reminder_repository import ReminderRepository
 
 

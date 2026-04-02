@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from datetime import datetime, timedelta
 
-from schemas.record_schema import DataRecordPayload, ManualRecordPayload
+from health_agent.schemas.record_schema import DataRecordPayload, ManualRecordPayload
 from health_agent.repositories.record_repository import RecordRepository
 
 

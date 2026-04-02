@@ -4,8 +4,8 @@ from datetime import datetime, timedelta
 
 from sqlalchemy import select
 
-from schemas.record_schema import DataRecordPayload
-from tools.db import DBClient, HealthRecord
+from health_agent.schemas.record_schema import DataRecordPayload
+from health_agent.tools.db import DBClient, HealthRecord
 
 
 class RecordRepository:

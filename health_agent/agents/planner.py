@@ -5,14 +5,14 @@ from typing import Any
 
 from langchain_openai import ChatOpenAI
 
-from config import (
+from health_agent.config import (
     DASHSCOPE_API_KEY,
     DASHSCOPE_BASE_URL,
     DASHSCOPE_CHAT_MODEL,
     MAX_FOLLOWUP_QUESTIONS,
     PROMPTS_DIR,
 )
-from schemas.agent_schema import PlannerResult
+from health_agent.schemas.agent_schema import PlannerResult
 
 
 def _load_prompt(filename: str, fallback: str) -> str:

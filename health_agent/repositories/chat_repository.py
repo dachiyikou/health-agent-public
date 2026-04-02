@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from tools.db import DBClient
+from health_agent.tools.db import DBClient
 
 
 class ChatRepository:

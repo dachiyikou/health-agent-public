@@ -3,7 +3,7 @@ from __future__ import annotations
 from statistics import median
 from typing import Any
 
-from schemas.memory_schema import UserProfilePayload
+from health_agent.schemas.memory_schema import UserProfilePayload
 from health_agent.repositories.profile_repository import ProfileRepository
 from health_agent.repositories.record_repository import RecordRepository
 from health_agent.repositories.reminder_repository import ReminderRepository

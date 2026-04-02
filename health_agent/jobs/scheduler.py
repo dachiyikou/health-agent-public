@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from typing import Any
 
-from tools.db import DBClient
-from tools.logger import build_logger
+from health_agent.tools.db import DBClient
+from health_agent.tools.logger import build_logger
 
 try:
     from apscheduler.schedulers.background import BackgroundScheduler

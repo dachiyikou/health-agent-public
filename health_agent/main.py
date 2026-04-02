@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from runtime import create_session_id, get_runtime
-from services.copilot_service import CopilotService
+from health_agent.runtime import create_session_id, get_runtime
+from health_agent.services.copilot_service import CopilotService
 
 
 def _build_error_response(exc: Exception) -> dict:

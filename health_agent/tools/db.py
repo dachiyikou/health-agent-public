@@ -8,9 +8,9 @@ from typing import Any, Iterator
 from sqlalchemy import Boolean, Float, Integer, String, Text, create_engine, delete, select
 from sqlalchemy.orm import DeclarativeBase, Mapped, Session, mapped_column, sessionmaker
 
-from config import DATABASE_URL
-from schemas.memory_schema import UserMemoryPayload, UserProfilePayload
-from schemas.record_schema import DataRecordPayload, ReminderPayload
+from health_agent.config import DATABASE_URL
+from health_agent.schemas.memory_schema import UserMemoryPayload, UserProfilePayload
+from health_agent.schemas.record_schema import DataRecordPayload, ReminderPayload
 
 
 def utcnow() -> str:

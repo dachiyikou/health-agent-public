@@ -7,7 +7,7 @@ from typing import Any
 import requests
 from langchain_openai import OpenAIEmbeddings
 
-from config import (
+from health_agent.config import (
     DASHSCOPE_API_KEY,
     DASHSCOPE_BASE_URL,
     DASHSCOPE_EMBEDDING_MODEL,

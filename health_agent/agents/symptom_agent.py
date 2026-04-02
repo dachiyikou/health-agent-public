@@ -2,9 +2,9 @@ from __future__ import annotations
 
 from langchain_openai import ChatOpenAI
 
-from config import DASHSCOPE_API_KEY, DASHSCOPE_BASE_URL, DASHSCOPE_CHAT_MODEL, MAX_FOLLOWUP_QUESTIONS, PROMPTS_DIR
-from schemas.agent_schema import SymptomResult
-from tools.rag import RAGService
+from health_agent.config import DASHSCOPE_API_KEY, DASHSCOPE_BASE_URL, DASHSCOPE_CHAT_MODEL, MAX_FOLLOWUP_QUESTIONS, PROMPTS_DIR
+from health_agent.schemas.agent_schema import SymptomResult
+from health_agent.tools.rag import RAGService
 
 
 def _load_prompt() -> str:

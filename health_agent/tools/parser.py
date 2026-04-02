@@ -5,7 +5,7 @@ from datetime import datetime
 
 from langchain_openai import ChatOpenAI
 
-from config import DASHSCOPE_API_KEY, DASHSCOPE_BASE_URL, DASHSCOPE_CHAT_MODEL
+from health_agent.config import DASHSCOPE_API_KEY, DASHSCOPE_BASE_URL, DASHSCOPE_CHAT_MODEL
 
 
 class InputParser:

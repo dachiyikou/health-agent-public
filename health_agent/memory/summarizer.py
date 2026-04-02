@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from langchain_openai import ChatOpenAI
 
-from config import DASHSCOPE_API_KEY, DASHSCOPE_BASE_URL, MEMORY_SUMMARY_MODEL
+from health_agent.config import DASHSCOPE_API_KEY, DASHSCOPE_BASE_URL, MEMORY_SUMMARY_MODEL
 
 
 class SessionSummarizer:

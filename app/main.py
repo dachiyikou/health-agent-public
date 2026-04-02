@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import os
 import subprocess
-import sys
 from pathlib import Path
 
 from fastapi import FastAPI
@@ -10,12 +9,6 @@ from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-HEALTH_AGENT_ROOT = PROJECT_ROOT / "health_agent"
-
-for import_path in (PROJECT_ROOT, HEALTH_AGENT_ROOT):
-    value = str(import_path)
-    if value not in sys.path:
-        sys.path.insert(0, value)
 
 from app.web.api import api_router
 from app.web.pages import page_router

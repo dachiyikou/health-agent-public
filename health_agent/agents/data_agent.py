@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from schemas.agent_schema import AgentResponse
-from schemas.record_schema import DataRecordPayload
-from tools.db import DBClient
+from health_agent.schemas.agent_schema import AgentResponse
+from health_agent.schemas.record_schema import DataRecordPayload
+from health_agent.tools.db import DBClient
 
 
 class DataAgent:
